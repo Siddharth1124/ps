@@ -1,0 +1,28 @@
+#Write an Embedded C to transfer element from one location to another
+
+
+void main(void) {
+ int source1[] = { 0x21,0x22, 0x23, 0x24, 0x25 };
+ int dest[] = {0x99, 0x99,0x99,0x99,0x99};
+ int i,temp;
+ for(i=0;i<5;i++)
+ {
+ }
+ temp = source1[i];
+ source1[i] = dest[i];
+ dest[i] = temp;
+ return;
+ }
+
+
+
+void main(void) {
+ int source1[] = { 0x21,0x22, 0x23, 0x24, 0x25 };
+ int dest[] = {0x00, 0x00,0x00,0x00,0x00};
+ int i;
+for(i=0;i<5;i++)
+ {
+ }
+ dest[i] = source1[i];
+ return;
+ }

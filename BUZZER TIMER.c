@@ -1,0 +1,45 @@
+/*
+ * File:   BUZZER TIMER.c
+ * Author: student
+ *
+ * Created on 13 April, 2024, 3:31 PM
+ */
+
+
+
+#include <xc.h>   
+//Include Controller specific .h 
+//Configuration bits setting 
+#pragma config OSC = HS   
+//Oscillator Selection 
+#pragma config WDT = OFF   
+#pragma config LVP = OFF   
+#pragma config PBADEN = OFF 
+//Disable Watchdog timer 
+//Disable Low Voltage Programming 
+//Disable PORTB Analog inputs 
+// Timer0 ISR Definition 
+void __interrupt () timer0_isr (void) 
+{ 
+TMR0H = 0X85;          //Reload the timer values after overflow 
+TMR0L = 0XEE; 
+PORTBbits.RB3 = ~PORTBbits.RB3; //Toggle the RB3 
+INTCONbits.TMR0IF = 0; //Reset the timer overflow interrupt flag 
+} 
+// Start of main Program 
+void main() 
+{  
+ADCON1 = 0x0F;        //Configuring the PORTE pins as digital I/O  
+TRISBbits.TRISB3 = 0; //Configuring the RB3 as output 
+PORTBbits.RB3 = 0;    //Setting the initial value 
+T0CON = 0x02; 
+//Set the timer to 16-bit,Fosc/4,1:16 pre-scaler 
+TMR0H = 0x85;         //load timer value to generate delay 50 ms 
+TMR0L = 0xEE; 
+INTCONbits.TMR0IF =0; // Clear Timer0 overflow flag 
+INTCONbits.TMR0IE =1; // TMR0 interrupt enabled 
+T0CONbits.TMR0ON = 1; // Start timer0 
+INTCONbits.GIE = 1; // Global interrupt enabled 
+while(1);                    
+ 
+} 

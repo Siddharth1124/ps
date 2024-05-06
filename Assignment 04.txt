@@ -1,0 +1,76 @@
+Procedure1: Multiply two hex 8 bit numbers:
+
+ void main()
+ {
+ unsigned char num1, num2;
+ unsigned int result;
+ // Get input from user
+ num1 = 0x12; // Example input value
+ num2 = 0x34; // Example input value
+ // Perform multiplication
+ result = num1 * num2;
+ // Display result
+ PORTD=(unsigned char) result;
+ }
+
+Procedure1: multiplying two 8-bit Hex numbers using successive addition method::
+ void main()
+ {
+ 
+ unsigned char num1, num2;
+ unsigned int result = 0;
+ unsigned char i;
+ // Get input from user
+ num1 = 0x12; // Example input value
+ num2 = 0x34; // Example input value
+ // Perform multiplication using successive addition
+ for(i = 0; i < num2; i++)
+ {
+ 
+ result += num1;
+}
+ // Display result
+ PORTD=(unsigned char) result;
+ PORTC=(unsigned char) (result >> 8);
+}
+
+
+
+Procedure2: Divide 8 bit number by 8 bit number :
+ void main()
+ {
+ unsigned char num1, num2;
+ unsigned char quotient;
+ // Get input from user
+ num1 = 0x78; // Example input value
+num2 = 0x12; // Example input value
+ // Perform division
+ quotient = num1 / num2;
+ // Display quotient
+ PORTD=quotient;
+ }
+
+
+ Procedure2: dividing two 8-bit hex numbers using successive subtraction method:
+ void main()
+ {
+ 
+ unsigned char num1, num2;
+ unsigned char quotient = 0;
+ // Get input from user
+ num1 = 0x78; // input value
+ num2 = 0x12; // input value
+ // Perform division using successive subtraction
+ while(num1 >= num2)
+ {
+ 
+ num1-= num2;
+ quotient++;
+}
+ // Display quotient
+ PORTD=quotient;
+}
+
+
+
+
